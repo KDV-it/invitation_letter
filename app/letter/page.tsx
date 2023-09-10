@@ -4,28 +4,41 @@ import React, { useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@nextui-org/react";
 import * as htmlToImage from 'html-to-image';
-// import download from 'downloadjs'
+import html2canvas from 'html2canvas';
+
 const Letter = () => {
   const router = useRouter();
   const searchParams = useSearchParams()
   const name = searchParams.get('name')
   const gender = searchParams.get('gender')
 
-  const download = () => {
-    const letter: any = document.getElementById('letter')
+  const handleDownload = () => {
+    const screenshortTarget: any = document.getElementById('letter');
 
-    htmlToImage.toPng(letter)
-      .then(function (dataUrl) {
-        download();
-      });
-    // htmlToImage.toJpeg(letter, { quality: 0.95 })
-    //   .then(function (dataUrl) {
-    //     var link = document.createElement('a');
-    //     link.download = 'my-image-name.jpeg';
-    //     link.href = dataUrl;
-    //     link.click();
-    //   })
+    html2canvas(screenshortTarget).then((canvas) => {
+      const base64image = canvas.toDataURL("image/png");
+      var anchor = document.createElement('a');
+      anchor.setAttribute("href", base64image);
+      anchor.setAttribute("download", "thiep.png");
+      anchor.click();
+      anchor.remove();
+    })
   }
+  // const download = () => {
+  //   const letter: any = document.getElementById('letter')
+
+  //   htmlToImage.toPng(letter)
+  //     .then(function (dataUrl) {
+  //       download();
+  //     });
+  //   // htmlToImage.toJpeg(letter, { quality: 0.95 })
+  //   //   .then(function (dataUrl) {
+  //   //     var link = document.createElement('a');
+  //   //     link.download = 'my-image-name.jpeg';
+  //   //     link.href = dataUrl;
+  //   //     link.click();
+  //   //   })
+  // }
 
   return (
     <div className='bg-[#415e4180] h-screen'>
@@ -50,21 +63,15 @@ const Letter = () => {
         />
       </div>
       <div className=' flex flex-col justify-center items-center h-screen max-[767px]:hidden'>
-        <div className='relative w-auto h-[auto] m-8 ' id='letter'>
-          <div className='absolute left-[50%] top-[29%] md:top-[27%] lg:top-[29%] w-[50%] flex flex-col items-center '>
-            <p className='font-bold font-[Crimson] text-2xl md:text-lg'>{gender === 'male' ? 'Anh' : gender === 'female' ? "Chị" : ""}{name}</p>
+        <div className='relative w-[80vw] h-auto m-4 max-w-[1024px] ' id='letter'>
+          <div className='absolute left-[50%] top-[29%] md:top-[26%] lg:top-[27.5%] w-[50%] flex flex-col items-center '>
+            <p className='font-bold font-[Crimson] text-2xl md:text-[0.7rem] '>{gender === 'male' ? 'Anh' : gender === 'female' ? "Chị" : ""}{name}</p>
           </div>
-          {/* <img className='shadow-green-600 w-full h-auto' src="/letter.png" alt="" /> */}
-          <Image
-            src="/letter.png"
-            alt="logo"
-            width={1024}
-            height={683}
-            priority
-          />
+          <img className='w-full max-w-[1024px]' src="/letter.png" alt="" />
+
         </div>
-        <div className='flex justify-around items-center'>
-          <Button className='text-[#266565] font-bold mr-4' variant="ghost" >
+        <div className='flex justify-around items-center mb-4'>
+          <Button className='text-[#266565] font-bold mr-4' variant="ghost" onClick={handleDownload}>
             Download Thư Mời
           </Button>
           <Button className='text-[#266565] font-bold' variant="ghost" onClick={() => router.push(`/`)}>

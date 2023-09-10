@@ -64,8 +64,8 @@ const Letter = () => {
       </div>
       <div className=' flex flex-col justify-center items-center h-screen max-[767px]:hidden'>
         <div className='relative w-[80vw] h-auto m-4 max-w-[1024px] ' id='letter'>
-          <div className='absolute left-[50%] top-[29%] md:top-[26%] lg:top-[27.5%] w-[50%] flex flex-col items-center '>
-            <p className='font-bold font-[Crimson] text-2xl md:text-[0.7rem] '>{gender === 'male' ? 'Anh' : gender === 'female' ? "Chị" : ""}{name}</p>
+          <div className='absolute left-[50%] top-[29%] md:top-[26%] lg:top-[28%] w-[50%] flex flex-col items-center '>
+            <p className='font-bold font-[Crimson] lg:text-base md:text-[0.7rem] '>{gender === 'male' ? 'Anh' : gender === 'female' ? "Chị" : ""}{name}</p>
           </div>
           <img className='w-full max-w-[1024px]' src="/letter.png" alt="" />
 

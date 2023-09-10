@@ -24,21 +24,7 @@ const Letter = () => {
       anchor.remove();
     })
   }
-  // const download = () => {
-  //   const letter: any = document.getElementById('letter')
 
-  //   htmlToImage.toPng(letter)
-  //     .then(function (dataUrl) {
-  //       download();
-  //     });
-  //   // htmlToImage.toJpeg(letter, { quality: 0.95 })
-  //   //   .then(function (dataUrl) {
-  //   //     var link = document.createElement('a');
-  //   //     link.download = 'my-image-name.jpeg';
-  //   //     link.href = dataUrl;
-  //   //     link.click();
-  //   //   })
-  // }
 
   return (
     <div className='bg-[#415e4180] h-screen'>
@@ -64,8 +50,8 @@ const Letter = () => {
       </div>
       <div className=' flex flex-col justify-center items-center h-screen max-[767px]:hidden'>
         <div className='relative w-[80vw] h-auto m-4 max-w-[1024px] ' id='letter'>
-          <div className='absolute left-[50%] top-[29%] md:top-[26%] lg:top-[28%] w-[50%] flex flex-col items-center '>
-            <p className='font-bold font-[Crimson] lg:text-base md:text-[0.7rem] '>{gender === 'male' ? 'Anh' : gender === 'female' ? "Chị" : ""}{name}</p>
+          <div className='absolute left-[50%] top-[29%] md:top-[28%] lg:top-[28%] min-[1440px]:top-[28%] w-[50%] flex flex-col items-center justify-start '>
+            <p className='font-bold font-[Crimson] lg:text-base md:text-[0.7rem] min-[1440px]:text-xl w-[70%] text-center '>{name}</p>
           </div>
           <img className='w-full max-w-[1024px]' src="/letter.png" alt="" />
 

@@ -63,9 +63,10 @@ const Name = ({ name, setName }: any) => {
                   setGender('Nữ')
                   setName('Chị ' + name)
                 }
-                else
+                else {
                   setGender('Khác')
-                setName('Anh/Chị ' + name)
+                  setName('Anh/Chị ' + name)
+                }
 
               }}
             >
@@ -77,7 +78,7 @@ const Name = ({ name, setName }: any) => {
           </Dropdown>
         </div>
 
-        {<Button className='mt-4 text-[#266526] font-bold' variant="ghost" onClick={() => router.push(`/letter?name=${name}&gender=${gender}`)}>
+        {<Button className='mt-4 text-[#266526] font-bold' variant="ghost" onClick={() => router.push(`/letter?name=${name}`)}>
           Nhận thư mời
         </Button>}
       </div>

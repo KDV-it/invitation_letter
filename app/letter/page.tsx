@@ -22,11 +22,19 @@ const Letter = () => {
         />
         <h1 className='text-[#fff] font-bold text-xl mt-4'>GIA ĐÌNH SINH VIÊN TÔMA THIỆN</h1>
         <p className='font-bold mt-10'>Ứng dụng hiện tại không hỗ trợ cho di động!</p>
+        <Image
+          className='shadow-green-600 mt-10'
+          src="/warning.png"
+          alt="logo"
+          width={100}
+          height={100}
+          priority
+        />
       </div>
       <div className=' flex flex-col justify-center items-center h-screen max-[767px]:hidden'>
         <div className='relative w-auto h-[auto] m-8 '>
-          <div className='absolute left-[50%] top-[29%] md:top-[28%] w-[50%] flex flex-col items-center '>
-            <p className='font-bold font-[Crimson] text-2xl md:text-xl'>{name}</p>
+          <div className='absolute left-[50%] top-[29%] md:top-[27%] lg:top-[29%] w-[50%] flex flex-col items-center '>
+            <p className='font-bold font-[Crimson] text-2xl md:text-lg'>{name}</p>
           </div>
           <Image
             className='shadow-green-600 w-full h-auto'

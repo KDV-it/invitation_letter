@@ -1,11 +1,12 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
-import { Input, Button } from "@nextui-org/react";
+import { Input, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, } from "@nextui-org/react";
 import { useRouter } from 'next/navigation'
 
 const Name = ({ name, setName }: any) => {
   const router = useRouter()
+  const [gender, setGender] = useState<string>('Giới Tính')
   const handleChange = (e: any) => {
     setName(e.target.value)
   }
@@ -40,7 +41,43 @@ const Name = ({ name, setName }: any) => {
         <p className='text-[#266526] font-bold text-5xl mt-4 font-CrimsonPro'>THÁNH TÔMA TRẦN VĂN THIỆN</p>
         <p className='mt-10 text-2xl text-[#fff]'>Mời anh chị nhập tên</p>
         <Input size='lg' type='text' label='Họ & Tên' onChange={handleChange} />
-        {<Button className='mt-4 text-[#266526] font-bold' variant="ghost" onClick={() => router.push(`/letter?name=${name}`)}>
+
+        {/* giới tính */}
+        <div className='mt-4'>
+          <Dropdown >
+            <DropdownTrigger>
+              <Button
+                variant="bordered"
+              >
+                <p className='text-[#266526] font-bold'>{gender}</p>
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Action event example"
+              onAction={(key) => {
+                if (key === "male") {
+                  setGender('Nam')
+                  setName('Anh ' + name)
+                }
+                else if (key === "female") {
+                  setGender('Nữ')
+                  setName('Chị ' + name)
+                }
+                else
+                  setGender('Khác')
+                setName('Anh/Chị ' + name)
+
+              }}
+            >
+              <DropdownItem key="male">Nam</DropdownItem>
+              <DropdownItem key="female">Nữ</DropdownItem>
+              <DropdownItem key="other">Khác</DropdownItem>
+
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+
+        {<Button className='mt-4 text-[#266526] font-bold' variant="ghost" onClick={() => router.push(`/letter?name=${name}&gender=${gender}`)}>
           Nhận thư mời
         </Button>}
       </div>
